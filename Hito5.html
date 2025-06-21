@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CAFETERIA CACAO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            background: 
+                linear-gradient(135deg, rgba(34,34,48,0.95) 0%, rgba(44,44,66,0.95) 100%),
+                url('https://images.unsplash.com/photo-1627854770131-9889e6249fb7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            transition: background 0.5s, color 0.5s;
+        }
+        header {
+            display: flex; align-items: center;
+            background: #23233a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            justify-content: center;
+            position: relative;
+        }
+        nav a {
+            color: #e0e0e0;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .promo-imgs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .promo-imgs img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            filter: brightness(0.8) contrast(1.1);
+            background: #23233a;
+        }
+        .promo-link img.hovered {
+            filter: brightness(1.1) sepia(0.2) hue-rotate(180deg);
+            box-shadow: 0 0 20px #000000;
+        }
+        .menu, .menu-box, section[style*="background: #fbeed7"], #carrito-section {
+            background: #23233a !important;
+            color: #e0e0e0 !important;
+        }
+        .menu h3, .menu-box h3, h2, h3 {
+            color: #ffd700 !important;
+        }
+        .map {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 8px;
+            filter: grayscale(0.7) brightness(0.7);
+        }
+        footer {
+            background: #23233a;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px 0;
+        }
+        /* Redes sociales modo noche */
+        #redes-sociales {
+            background: rgba(44, 44, 66, 0.92) !important;
+        }
+        #redes-sociales a {
+            color: #ffd700 !important;
+        }
+        #redes-sociales h3 {
+            color: #ffd700 !important;
+        }
+        /* Botón modo noche */
+        #toggle-night {
+            position: absolute;
+            right: 40px;
+            top: 25px;
+            background: #ffd700;
+            color: #23233a;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 28px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: background 0.3s, color 0.3s;
+            z-index: 10;
+        }
+        #toggle-night.night {
+            background: #23233a;
+            color: #ffd700;
+            border: 1px solid #ffd700;
+        }
+        /* Botones y campos */
+        button, input, select {
+            background: #23233a;
+            color: #ffd700;
+            border: 1px solid #ffd700;
+        }
+        button:hover {
+            background: #ffd700;
+            color: #23233a;
+        }
+        /* Carrusel */
+        #carrusel-croissants div[style*="background: #fff"] {
+            background: #23233a !important;
+        }
+        .carrusel-dot {
+            background: #ffd700 !important;
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .promo-imgs { flex-direction: column; align-items: center; }
+            .promo-imgs img { width: 90%; height: 180px; }
+            #toggle-night { right: 10px; top: 10px; padding: 8px 16px; font-size: 1em; }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; background: #23233a; color: #fff; padding: 20px 0; text-align: center; justify-content: center; position: relative;">
+        <img src="https://scontent.fcbb2-2.fna.fbcdn.net/v/t39.30808-6/385045311_692026406289223_5037811579735246444_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=QKVwPEfyg6gQ7kNvwE3rkMA&_nc_oc=AdnpIB0P5e0Z-E0e22TXu0bX21MZEgH3eQd6zZ5fBF3AHrzEtUOSe-o4HH6QTV1xbuM&_nc_zt=23&_nc_ht=scontent.fcbb2-2.fna&_nc_gid=Q2sFNVTI3VssSqBecUWGGQ&oh=00_AfOShgfb-BYvKsqSc6FKoHG7qY9ZmtlxmxGVWBNNFL95BA&oe=685BBB58"
+             alt="Logo Cafetería Cacao"
+             style="height: 70px; width: 70px; object-fit: cover; border-radius: 50%; margin-right: 28px; margin-left: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); background: #fff;">
+        <div style="flex: 1;">
+            <h1 style="margin: 0;">CAFETERIA CACAO</h1>
+            <nav>
+                <a href="#promociones">Promociones</a>
+                <a href="#menu">Menú</a>
+                <a href="#ubicacion">Ubicación</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+        <button id="toggle-night" onclick="toggleNightMode()">Modo Día</button>
+    </header>
+    <div class="container">
+        <!-- Sección de Descripción especial (ahora arriba) -->
+        <section id="descripcion-cafe" style="background: #fffbe9; padding: 35px 20px; border-radius: 18px; margin-bottom: 40px; transition: background 0.5s;">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+            <p style="
+                text-align: center;
+                font-family: 'Montserrat', Arial, sans-serif;
+                font-weight: 500;
+                font-size: 1.25em;
+                color: #6b3e26;
+                margin: 0;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                transition: color 0.5s;
+            ">
+                Descubre el sabor auténtico del café de especialidad en un espacio acogedor donde cada taza cuenta una historia. En CACAO, seleccionamos granos de alta calidad y los preparamos con pasión, acompañados de repostería artesanal, desayunos únicos y croissants originales. Ven a disfrutar, compartir y relajarte con nosotros.
+            </p>
+        </section>
+        <!-- Sección de Promociones -->
+        <section id="promociones" class="section">
+            <h2>Promociones</h2>
+            <div class="promo-imgs">
+                <a href="https://www.ejemplo1.com" target="_blank" class="promo-link">
+                    <img src="https://images.unsplash.com/photo-1495774856032-8b90bbb32b32?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Promo 1">
+                </a>
+                <a href="https://www.ejemplo2.com" target="_blank" class="promo-link">
+                    <img src="https://images.unsplash.com/photo-1565498253128-c06e0488ddee?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Promo 2">
+                </a>
+                <a href="https://www.ejemplo3.com" target="_blank" class="promo-link">
+                    <img src="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?q=80&w=2655&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Promo 3">
+                </a>
+            </div>
+        </section>
+
+        <!-- Ubica este bloque justo debajo de la sección de promociones y antes de la sección de productos/carrusel -->
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 50px 0 40px 0;">
+            <span style="color: #e53935; font-size: 60px; font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; text-align: center; margin-bottom: 25px;">
+                ¡Pide Ahora!
+            </span>
+            <a href="https://drive.google.com/file/d/1eYyfP4lpgqaKUIF9CtAgvUYLYLgFEqtE/view" target="_blank" style="text-decoration: none;">
+                <button type="button" style="
+                    background: #6b3e26;
+                    color: #fff;
+                    font-family: 'Montserrat', Arial, sans-serif;
+                    font-size: 45px;
+                    font-weight: 700;
+                    border: none;
+                    border-radius: 14px;
+                    padding: 18px 60px;
+                    cursor: pointer;
+                    transition: background 0.3s;
+                ">
+                    Menú
+                </button>
+            </a>
+        </div>
+
+        <!-- Sección de Productos y Carrusel (subida justo debajo de promociones) -->
+        <section style="background: #a0522d; padding: 40px 0 50px 0; border-radius: 18px; margin-bottom: 40px;">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+            <h2 style="
+                text-align: center;
+                color: #000000;
+                font-family: 'Montserrat', Arial, sans-serif;
+                font-weight: 700;
+                font-size: 2em;
+                margin-top: 0;
+                margin-bottom: 30px;
+                letter-spacing: 1px;
+            ">
+                Productos
+            </h2>
+            <div id="carrusel-croissants" style="display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 600px; max-width: 95vw; height: 350px; max-height: 60vw; overflow: hidden; border-radius: 24px; box-shadow: 0 2px 32px rgba(0,0,0,0.18); background: #fff;">
+                    <img id="carrusel-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Croissant 1" 
+                        style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.7s;">
+                </div>
+                <div style="margin-top: 24px; display: flex; gap: 14px; justify-content: center;">
+                    <span class="carrusel-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;display:inline-block;cursor:pointer;opacity:0.7;" data-index="0"></span>
+                    <span class="carrusel-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;display:inline-block;cursor:pointer;opacity:0.7;" data-index="1"></span>
+                    <span class="carrusel-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;display:inline-block;cursor:pointer;opacity:0.7;" data-index="2"></span>
+                    <span class="carrusel-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;display:inline-block;cursor:pointer;opacity:0.7;" data-index="3"></span>
+                    <span class="carrusel-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;display:inline-block;cursor:pointer;opacity:0.7;" data-index="4"></span>
+                </div>
+            </div>
+        </section>
+        <script>
+            // Carrusel de Croissants/Pastelería
+            const croissantImgs = [
+                "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1607813507428-ea507f5949b9?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1630960125584-5d4562a44390?q=80&w=1351&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1597061286894-5100bd5be656?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1582189044629-a4af507bcf4d?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ];
+            let carruselIndex = 0;
+            const carruselImg = document.getElementById('carrusel-img');
+            const dots = document.querySelectorAll('.carrusel-dot');
+            function showCarruselImg(idx) {
+                carruselImg.style.opacity = 0;
+                setTimeout(() => {
+                    carruselImg.src = croissantImgs[idx];
+                    carruselImg.style.opacity = 1;
+                    dots.forEach((dot, i) => {
+                        dot.style.opacity = (i === idx) ? "1" : "0.7";
+                        dot.style.background = (i === idx) ? "#fbeed7" : "#fff";
+                    });
+                }, 350);
+            }
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    carruselIndex = parseInt(this.getAttribute('data-index'));
+                    showCarruselImg(carruselIndex);
+                    resetCarruselInterval();
+                });
+            });
+            function nextCarruselImg() {
+                carruselIndex = (carruselIndex + 1) % croissantImgs.length;
+                showCarruselImg(carruselIndex);
+            }
+            let carruselInterval = setInterval(nextCarruselImg, 5000);
+            function resetCarruselInterval() {
+                clearInterval(carruselInterval);
+                carruselInterval = setInterval(nextCarruselImg, 5000);
+            }
+            // Inicializar
+            showCarruselImg(0);
+        </script>
+
+        <!-- Sección de Carrito de Compras (ahora ubicada antes de Ubicación) -->
+        <section id="carrito-section" style="background: #fbeed7; border-radius: 18px; max-width: 600px; margin: 0 auto 40px auto; padding: 30px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);">
+            <h2 style="text-align: center; color: #6b3e26; font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 2em; margin-top: 0;">
+                Carrito de Compras
+            </h2>
+            <div style="margin-bottom: 18px; text-align: center;">
+                <select id="producto-select" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em;">
+                    <option value="" disabled selected>Selecciona un producto</option>
+                    <option value="Café Espresso">Café Espresso</option>
+                    <option value="Croissant">Croissant</option>
+                    <option value="Brownie">Brownie</option>
+                    <option value="Capuccino">Capuccino</option>
+                    <option value="Té de Hierbas">Té de Hierbas</option>
+                </select>
+                <input id="cantidad-input" type="number" min="1" value="1" style="width: 60px; margin-left: 10px; padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
+                <button onclick="agregarAlCarrito()" style="background: #a0522d; color: #fff; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; border: none; border-radius: 8px; padding: 8px 18px; margin-left: 10px; cursor: pointer;">
+                    Agregar
+                </button>
+            </div>
+            <div id="mensaje-agregado" style="display:none; text-align:center; color:#388e3c; font-family:'Montserrat', Arial, sans-serif; font-weight:600; margin-bottom:12px;">
+                ¡Agregado con Éxito!
+            </div>
+            <!-- Sección: Pedido Actual -->
+            <div id="pedido-actual" style="background:#fffbe9; border-radius:10px; padding:16px; margin-bottom:18px; box-shadow:0 1px 6px rgba(0,0,0,0.04);">
+                <h3 style="color:#6b3e26; margin-top:0;">Pedido Actual</h3>
+                <ul id="carrito-lista" style="list-style: none; padding: 0; margin: 0 0 18px 0; min-height: 40px; text-align: center; color: #6b3e26; font-size: 1.1em;"></ul>
+                <div id="total-pedido" style="text-align:right; color:#4e2e0e; font-weight:700; margin-top:10px;"></div>
+                <div style="text-align: center;">
+                    <button onclick="vaciarCarrito()" style="background: #e53935; color: #fff; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; border: none; border-radius: 8px; padding: 8px 18px; cursor: pointer;">
+                        Vaciar Carrito
+                    </button>
+                </div>
+            </div>
+            <!-- Sección: Ejecutar Pedido -->
+            <div id="ejecutar-pedido" style="background:#fbeed7; border-radius:10px; padding:16px; margin-bottom:18px; box-shadow:0 1px 6px rgba(0,0,0,0.04); text-align:center;">
+                <h3 style="color:#6b3e26; margin-top:0; text-align:center;">Ejecutar Pedido</h3>
+                <button onclick="ejecutarPedido()" style="background: #6b3e26; color: #fff; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; border: none; border-radius: 8px; padding: 10px 28px; font-size:1.1em; cursor: pointer; margin: 0 auto; display: inline-block;">
+                    Realizar Pedido
+                </button>
+                <div id="mensaje-pedido" style="display:none; color:#388e3c; margin-top:10px; font-weight:600; text-align:center;">¡Pedido realizado con éxito!</div>
+            </div>
+            <!-- Sección: Pagar Pedido -->
+            <div id="pago-pedido" style="background:#fffbe9; border-radius:10px; padding:16px; box-shadow:0 1px 6px rgba(0,0,0,0.04); text-align:center;">
+                <h3 style="color:#6b3e26; margin-top:0; text-align:center;">Pagar Pedido</h3>
+                <button onclick="mostrarFormularioPago()" style="background: #ffd700; color: #23233a; font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; border: none; border-radius: 8px; padding: 10px 28px; font-size:1.1em; cursor: pointer; margin: 0 auto; display: inline-block;">
+                    Pagar Ahora
+                </button>
+                <div id="mensaje-pago" style="display:none; color:#388e3c; margin-top:10px; font-weight:600; text-align:center;">¡Pago realizado! Gracias por tu compra.</div>
+            </div>
+            <!-- Sección: Formulario de Pago (oculta por defecto) -->
+            <div id="formulario-pago" style="display:none; background:#fffbe9; border-radius:10px; padding:24px; box-shadow:0 1px 6px rgba(0,0,0,0.04); margin-top:18px; text-align:center;">
+                <h3 style="color:#6b3e26; margin-top:0;">Selecciona método de pago</h3>
+                <form id="pago-form" style="margin-top:18px;">
+                    <label style="display:block; margin-bottom:10px;">
+                        <input type="radio" name="metodo" value="tarjeta" required> Pago con Tarjeta
+                    </label>
+                    <label style="display:block; margin-bottom:10px;">
+                        <input type="radio" name="metodo" value="qr"> Pago con QR
+                    </label>
+                    <label style="display:block; margin-bottom:18px;">
+                        <input type="radio" name="metodo" value="cash"> Pago en Cash
+                    </label>
+                    <div id="pago-tarjeta" style="display:none; margin-bottom:18px;">
+                        <input type="text" placeholder="Número de tarjeta" style="padding:8px; border-radius:6px; border:1px solid #ccc; width:220px; margin-bottom:8px;"><br>
+                        <input type="text" placeholder="Nombre en la tarjeta" style="padding:8px; border-radius:6px; border:1px solid #ccc; width:220px; margin-bottom:8px;"><br>
+                        <input type="text" placeholder="MM/AA" style="padding:8px; border-radius:6px; border:1px solid #ccc; width:90px; margin-bottom:8px;">
+                        <input type="text" placeholder="CVV" style="padding:8px; border-radius:6px; border:1px solid #ccc; width:60px; margin-left:10px;">
+                    </div>
+                    <div id="pago-qr" style="display:none; margin-bottom:18px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PagoCafeteriaCacao" alt="QR de pago" style="margin-bottom:8px;"><br>
+                        <span style="color:#6b3e26;">Escanea el código QR para pagar</span>
+                    </div>
+                    <div id="pago-cash" style="display:none; margin-bottom:18px;">
+                        <span style="color:#6b3e26;">Por favor, paga en caja al recoger tu pedido.</span>
+                    </div>
+                    <button type="submit" style="background: #6b3e26; color: #fff; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; border: none; border-radius: 8px; padding: 10px 28px; font-size:1.1em; cursor: pointer; margin-top:10px;">
+                        Confirmar Pago
+                    </button>
+                    <button type="button" onclick="cerrarFormularioPago()" style="background: #e53935; color: #fff; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; border: none; border-radius: 8px; padding: 10px 28px; font-size:1.1em; cursor: pointer; margin-top:10px; margin-left:10px;">
+                        Cancelar
+                    </button>
+                </form>
+            </div>
+        </section>
+        <script>
+    // Carrito de compras dinámico
+    let carrito = [];
+    const precios = {
+        "Café Espresso": 12,
+        "Croissant": 15,
+        "Brownie": 10,
+        "Capuccino": 14,
+        "Té de Hierbas": 9
+    };
+
+    function agregarAlCarrito() {
+        const producto = document.getElementById('producto-select').value;
+        const cantidad = parseInt(document.getElementById('cantidad-input').value, 10);
+        if (!producto || cantidad < 1) return;
+
+        // Buscar si ya existe el producto en el carrito
+        const idx = carrito.findIndex(item => item.producto === producto);
+        if (idx > -1) {
+            carrito[idx].cantidad += cantidad;
+        } else {
+            carrito.push({ producto, cantidad });
+        }
+        renderizarCarrito();
+
+        // Mostrar mensaje de éxito
+        const mensaje = document.getElementById('mensaje-agregado');
+        mensaje.style.display = 'block';
+        setTimeout(() => {
+            mensaje.style.display = 'none';
+        }, 1500);
+    }
+
+    function vaciarCarrito() {
+        carrito = [];
+        renderizarCarrito();
+    }
+
+    function renderizarCarrito() {
+        const lista = document.getElementById('carrito-lista');
+        lista.innerHTML = '';
+        let total = 0;
+        if (carrito.length === 0) {
+            lista.innerHTML = '<li style="color:#a0522d;">El carrito está vacío.</li>';
+            document.getElementById('total-pedido').textContent = '';
+            return;
+        }
+        carrito.forEach(item => {
+            const li = document.createElement('li');
+            const precio = precios[item.producto] || 0;
+            li.textContent = `${item.producto} x${item.cantidad} - Bs ${precio * item.cantidad}`;
+            lista.appendChild(li);
+            total += precio * item.cantidad;
+        });
+        document.getElementById('total-pedido').textContent = `Total: Bs ${total}`;
+    }
+
+    // Ejecutar Pedido
+    function ejecutarPedido() {
+        if (carrito.length === 0) {
+            document.getElementById('mensaje-pedido').style.display = 'none';
+            alert('Agrega productos al carrito antes de realizar el pedido.');
+            return;
+        }
+        document.getElementById('mensaje-pedido').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('mensaje-pedido').style.display = 'none';
+        }, 2000);
+    }
+
+    // Pagar Pedido
+    function pagarPedido() {
+        if (carrito.length === 0) {
+            document.getElementById('mensaje-pago').style.display = 'none';
+            alert('No hay productos para pagar.');
+            return;
+        }
+        document.getElementById('mensaje-pago').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('mensaje-pago').style.display = 'none';
+            vaciarCarrito();
+        }, 2000);
+    }
+
+    // Inicializar carrito al cargar
+    renderizarCarrito();
+
+    function mostrarFormularioPago() {
+        if (carrito.length === 0) {
+            document.getElementById('mensaje-pago').style.display = 'none';
+            alert('No hay productos para pagar.');
+            return;
+        }
+        document.getElementById('formulario-pago').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('formulario-pago').offsetTop - 80, behavior: 'smooth' });
+    }
+    function cerrarFormularioPago() {
+        document.getElementById('formulario-pago').style.display = 'none';
+    }
+    document.getElementById('pago-form').addEventListener('change', function(e) {
+        document.getElementById('pago-tarjeta').style.display = 'none';
+        document.getElementById('pago-qr').style.display = 'none';
+        document.getElementById('pago-cash').style.display = 'none';
+        if (this.metodo.value === 'tarjeta') {
+            document.getElementById('pago-tarjeta').style.display = 'block';
+        } else if (this.metodo.value === 'qr') {
+            document.getElementById('pago-qr').style.display = 'block';
+        } else if (this.metodo.value === 'cash') {
+            document.getElementById('pago-cash').style.display = 'block';
+        }
+    });
+    document.getElementById('pago-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('formulario-pago').style.display = 'none';
+        document.getElementById('mensaje-pago').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('mensaje-pago').style.display = 'none';
+            vaciarCarrito();
+        }, 2000);
+    });
+</script>
+
+        <!-- Sección de Ubicación -->
+        <section id="ubicacion" class="section">
+            <h2>Ubicación</h2>
+            <p>Encuéntranos en Av. América Nte. 335, Cochabamba.</p>
+            <iframe class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.282969652396!2d-66.15785782491934!3d-17.37252698326014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373b1f7b6d6e7%3A0x2e6b6b6b6b6b6b6b!2sAv.%20Am%C3%A9rica%20Nte.%20335%2C%20Cochabamba!5e0!3m2!1ses!2sbo!4v1717690000000!5m2!1ses!2sbo"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <!-- Sección de Redes Sociales extendida de lado a lado y con fondo canela translúcido -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+        <section id="redes-sociales" style="
+            background: rgba(44, 44, 66, 0.92) !important;
+            border-radius: 0;
+            width: 100vw;
+            max-width: 100vw;
+            margin: 0 -50vw 0 -50vw;
+            left: 50%;
+            right: 50%;
+            position: relative;
+            padding: 32px 0 32px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            ">
+            <h3 style="color: #ffd700 !important; font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 2em; margin-top: 0;">
+                Síguenos en redes sociales
+            </h3>
+            <div style="display: flex; justify-content: center; gap: 60px; margin-top: 18px;">
+                <a href="https://www.instagram.com/cacaopasteleriacbba?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="text-decoration: none; color: #ffd700 !important; font-size: 2.5em;" title="Instagram">
+                    <i class="fab fa-instagram" style="font-size:2em;"></i>
+                    <span style="display:block; font-size:0.6em; margin-top:4px;">Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/PasteleriaArtesanalCacao" target="_blank" style="text-decoration: none; color: #ffd700 !important; font-size: 2.5em;" title="Facebook">
+                    <i class="fab fa-facebook-square" style="font-size:2em;"></i>
+                    <span style="display:block; font-size:0.6em; margin-top:4px;">Facebook</span>
+                </a>
+                <a href="#" target="_blank" style="text-decoration: none; color: #ffd700 !important; font-size: 2.5em;" title="Whatsapp">
+                    <i class="fab fa-whatsapp" style="font-size:2em;"></i>
+                    <span style="display:block; font-size:0.6em; margin-top:4px;">Whatsapp</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    <footer id="contacto">
+        <p><strong>Contacto:</strong> cafeteriacacao@email.com | Tel: +591 70000000</p>
+        <p>Av. Principal #123, Ciudad Central, Bolivia</p>
+        <form id="registro-form" style="margin-top:20px;">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required style="margin: 0 10px 10px 10px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required style="margin: 0 10px 10px 10px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+            <button type="submit" style="background: #6b3e26; color: #fff; border: none; border-radius: 5px; padding: 8px 20px; cursor: pointer;">Registrarse</button>
+        </form>
+        <div id="mensaje-exito" style="display:none; margin-top:20px; background:#a0522d; color:#fff; padding:20px; border-radius:8px; font-size:1.2em; text-align:center;">
+            ¡Excelente! Estás registrado
+        </div>
+        <p>&copy; 2025 Cafetería Cacao. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            const $btn = $('#btn-menu button');
+            $btn.hover(
+                function() {
+                    $(this).stop().animate({ backgroundColor: "#a0522d" }, 300);
+                },
+                function() {
+                    $(this).stop().animate({ backgroundColor: "#6b3e26" }, 300);
+                }
+            );
+            $btn.mousedown(function() {
+                $(this).stop().animate({ backgroundColor: "#d2691e" }, 200);
+            });
+            $btn.mouseup(function() {
+                $(this).stop().animate({ backgroundColor: "#a0522d" }, 200);
+            });
+
+            // Animación para el formulario de registro
+            $('#registro-form').submit(function(e){
+                e.preventDefault();
+                $('#mensaje-exito').hide().css({opacity:0, top:"40px"}).show().animate({opacity:1, top:"0px"}, 500);
+                $(this).trigger("reset");
+            });
+
+            // Animación hover para imágenes de promociones
+            $('.promo-link img').on('mouseenter', function() {
+                $(this).addClass('hovered');
+            }).on('mouseleave', function() {
+                $(this).removeClass('hovered');
+            });
+        });
+
+        // Botón modo noche/día
+        function toggleNightMode() {
+            const body = document.body;
+            const btn = document.getElementById('toggle-night');
+            const descripcionSection = document.getElementById('descripcion-cafe');
+            const descripcion = descripcionSection.querySelector('p');
+            // Selecciona los títulos de Promociones y Ubicación
+            const promoTitulo = document.querySelector('#promociones h2');
+            const ubicacionTitulo = document.querySelector('#ubicacion h2');
+            body.classList.toggle('night');
+            if (body.classList.contains('night')) {
+                // Cambia a modo noche
+                body.style.background = "linear-gradient(135deg, rgba(34,34,48,0.95) 0%, rgba(44,44,66,0.95) 100%), url('https://images.unsplash.com/photo-1627854770131-9889e6249fb7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed";
+                body.style.color = "#e0e0e0";
+                btn.textContent = "Modo Día";
+                btn.classList.remove('night');
+                if (descripcionSection) descripcionSection.style.background = "#23233a";
+                if (descripcion) descripcion.style.color = "#ffd700";
+                // Títulos en modo noche (color dorado)
+                if (promoTitulo) promoTitulo.style.color = "#ffd700";
+                if (ubicacionTitulo) ubicacionTitulo.style.color = "#ffd700";
+            } else {
+                // Cambia a modo día
+                body.style.background = "linear-gradient(135deg, rgba(243,214,182,0.85) 0%, rgba(251,238,215,0.85) 100%), url('https://images.unsplash.com/photo-1627854770131-9889e6249fb7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed";
+                body.style.color = "#23233a";
+                btn.textContent = "Modo Noche";
+                btn.classList.add('night');
+                if (descripcionSection) descripcionSection.style.background = "#fffbe9";
+                if (descripcion) descripcion.style.color = "#6b3e26";
+                // Títulos en modo día (color café oscuro)
+                if (promoTitulo) promoTitulo.style.color = "#4e2e0e";
+                if (ubicacionTitulo) ubicacionTitulo.style.color = "#4e2e0e";
+            }
+        }
+    </script>
+</body>
+</html>
